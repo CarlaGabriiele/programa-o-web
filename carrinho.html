@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Carrinho{% endblock %}
+{% block pagina %}Seu Carrinho{% endblock %}
+
+{% block conteudo %}
+{% if carrinho %}
+    <ul>
+        {% for item in carrinho %}
+            <li>
+                {{ item.nome }} - R$ {{ item.preco }}
+                <!-- Link para remover item (usando índice) -->
+                <a href="{{ url_for('remover_item_carrinho', index=loop.index0) }}">Remover</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p><strong>Total:</strong> R$ {{ total }}</p>
+{% else %}
+    <p>Seu carrinho está vazio.</p>
+{% endif %}
+
+<a href="{{ url_for('loja') }}">Continuar Comprando</a>
+<a href="{{ url_for('dashboard') }}">Voltar ao Painel</a>
+{% endblock %}
+
+
