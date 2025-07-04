@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+{% block pagina %}Login{% endblock %}
+
+{% block conteudo %}
+<form method="post">
+    <input type="text" name="email" placeholder="E-mail" required>
+    <input type="password" name="senha" placeholder="Senha" required>
+    <button type="submit">Entrar</button>
+</form>
+{% endblock %}
