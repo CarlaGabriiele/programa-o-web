@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}Página Inicial{% endblock %}
+{% block pagina %}Bem-vindo!{% endblock %}
+
+{% block conteudo %}
+<p>Você já visitou esta página {{ request.cookies.get('visitas') }} vezes.</p>
+{% endblock %}
