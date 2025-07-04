@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro{% endblock %}
+{% block pagina %}Cadastro{% endblock %}
+
+{% block conteudo %}
+<form method="post">
+    <input type="text" name="email" placeholder="E-mail" required>
+    <input type="password" name="senha" placeholder="Senha" required>
+    <button type="submit">Cadastrar</button>
+</form>
+{% endblock %}
