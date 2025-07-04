@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Base{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Início</a>
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('dashboard') }}">Painel</a>
+            <a href="{{ url_for('loja') }}">Loja</a>
+            <a href="{{ url_for('carrinho') }}">Carrinho</a>
+            <form action="{{ url_for('remover_usuario') }}" method="post" style="display:inline;">
+                <button type="submit" style="background-color: red;">Excluir Conta</button>
+            </form>
+            <form action="{{ url_for('logout') }}" method="post" style="display:inline;">
+                <button type="submit">Sair</button>
+            </form>
+        {% else %}
+            {% if session.get('usuarios') %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+            <a href="{{ url_for('register') }}">Cadastrar</a>
+        {% endif %}
+    </nav>
+
+    <h1>{% block pagina %}{% endblock %}</h1>
+
+    {% with messages = get_flashed_messages(category_filter=['error', 'success']) %}
+        {% if messages %}
+            <ul class="mensagem">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    {% block conteudo %}{% endblock %}
+</body>
+</html>
